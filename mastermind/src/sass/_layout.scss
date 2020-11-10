@@ -1,4 +1,36 @@
-body {
-  background-color: $color-background;
-  font-size: 10px;
+.game {
+  &-container {
+    height: 100vh;
+    width: 375px;
+    margin: auto;
+  }
+
+  &-header {
+    height: 70px;
+    padding: 20px 0;
+
+    &-title {
+      font-family: $font-fredoka;
+      font-size: 4rem;
+      color: $color-text;
+      text-align: center;
+    }
+  }
+  &-info {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-family: $font-open;
+    color: $color-text;
+    display: flex;
+    justify-content: space-between;
+
+    .restart {
+      transition: 0.2s;
+      &:hover {
+        cursor: pointer;
+        color: black;
+      }
+    }
+  }
 }

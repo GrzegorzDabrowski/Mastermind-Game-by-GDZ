@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  &-pegs {
+    display: flex;
+  }
+
+  &-hints {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.peg {
+  width: 40px;
+  height: 40px;
+  border: 2px solid $color-text;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.hint {
+  width: 15px;
+  height: 15px;
+  border: 2px solid $color-text;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.secret-code {
+  margin-top: 40px;
+}
