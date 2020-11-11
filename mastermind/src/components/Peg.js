@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import "../sass/main.scss";
-
-const colorPalette = {
-  0: "$color-orange",
-  1: "$color-red",
-  2: "$color-purple",
-  3: "$color-green",
-  4: "$color-blue",
-  5: "$color-yellow",
-  correct: "$color-correct",
-  correctColor: "$color-correct-color",
-};
+import ColorChooser from "./ColorChooser";
 
 const Peg = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -21,12 +11,11 @@ const Peg = () => {
         className="peg"
         onClick={() => setIsClicked((prevState) => !prevState)}
       ></span>
-      <div
-        className="color-chooser"
+      <ColorChooser
         style={{
           display: isClicked ? "block" : "none",
         }}
-      ></div>
+      />
     </div>
   );
 };

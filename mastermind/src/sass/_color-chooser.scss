@@ -1,10 +1,22 @@
-.color-chooser {
-  width: 100px;
-  height: 70px;
-  position: absolute;
-  padding: 5px;
-  background-color: $color-background;
-  z-index: 0;
-  border: 1px solid $color-text;
-  border-radius: 10px;
+.color {
+  &-chooser {
+    width: 100px;
+    height: 70px;
+    position: absolute;
+    padding: 5px;
+    background-color: $color-background;
+    z-index: 0;
+    border: 1px solid $color-text;
+    border-radius: 10px;
+  }
+
+  &-to-choose {
+    margin: 4px;
+    display: inline-block;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid $color-text;
+  }
 }
