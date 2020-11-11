@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  // position: relative;
   &-pegs {
     display: flex;
   }
@@ -15,12 +16,20 @@
   }
 }
 
+.peg-div {
+  width: 50px;
+  height: 50px;
+}
+
 .peg {
   width: 40px;
   height: 40px;
   border: 2px solid $color-text;
   border-radius: 50%;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hint {

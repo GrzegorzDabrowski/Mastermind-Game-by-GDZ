@@ -1,14 +1,15 @@
 import React from "react";
 import "../sass/main.scss";
+import Peg from "./Peg";
 
 const Row = () => {
   return (
     <div className="row">
       <div className="row-pegs">
-        <span className="peg"></span>
-        <span className="peg"></span>
-        <span className="peg"></span>
-        <span className="peg"></span>
+        <Peg />
+        <Peg />
+        <Peg />
+        <Peg />
       </div>
       <div className="row-hints">
         <span className="hint"></span>

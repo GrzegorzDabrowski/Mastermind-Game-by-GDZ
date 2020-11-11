@@ -1,0 +1,10 @@
+.color-chooser {
+  width: 100px;
+  height: 70px;
+  position: absolute;
+  padding: 5px;
+  background-color: $color-background;
+  z-index: 0;
+  border: 1px solid $color-text;
+  border-radius: 10px;
+}
