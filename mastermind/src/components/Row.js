@@ -1,21 +1,42 @@
 import React from "react";
-import "../sass/main.scss";
 import Peg from "./Peg";
+import Hint from "./Hint";
 
-const Row = () => {
+const Row = ({
+  pegs,
+  hints,
+  isCompleted,
+  rowIndex,
+  changeColor,
+  isCurrent,
+}) => {
   return (
     <div className="row">
       <div className="row-pegs">
-        <Peg />
-        <Peg />
-        <Peg />
-        <Peg />
+        {pegs.map((peg, i) => {
+          return (
+            <Peg
+              key={i}
+              pegIndex={i}
+              rowIndex={rowIndex}
+              color={peg}
+              changeColor={changeColor}
+              isCurrent={isCurrent}
+            />
+          );
+        })}
       </div>
       <div className="row-hints">
-        <span className="hint"></span>
-        <span className="hint"></span>
-        <span className="hint"></span>
-        <span className="hint"></span>
+        {hints.map((hint, i) => {
+          return (
+            <Hint
+              key={i}
+              hintIndex={i}
+              rowIndex={rowIndex}
+              isCurrent={isCurrent}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,21 +1,26 @@
 import React, { useState } from "react";
-import "../sass/main.scss";
 import ColorChooser from "./ColorChooser";
 
-const Peg = () => {
+const Peg = ({ color, pegIndex, rowIndex, changeColor, isCurrent }) => {
   const [isClicked, setIsClicked] = useState(false);
+
+  const handleChangeColor = (color) => {
+    setIsClicked(false);
+    changeColor(pegIndex, rowIndex, color);
+  };
 
   return (
     <div className="peg-div">
       <span
         className="peg"
         onClick={() => setIsClicked((prevState) => !prevState)}
-      ></span>
-      <ColorChooser
         style={{
-          display: isClicked ? "block" : "none",
+          backgroundColor: color ? color : undefined,
         }}
-      />
+      ></span>
+      {isClicked && isCurrent && (
+        <ColorChooser changeColor={handleChangeColor} />
+      )}
     </div>
   );
 };
