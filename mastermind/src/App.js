@@ -23,13 +23,41 @@ function App() {
     setRows(tmpRows);
   };
 
+  const colors = [
+    "#f1a119",
+    "#fc5560",
+    "#9249b7",
+    "#349f34",
+    "#92c3ee",
+    "#f5e76e",
+  ];
+
+  const [secretCode, setSecretCode] = useState(
+    [...new Array(4)].map((color) => {
+      const random = Math.floor(Math.random() * Math.floor(colors.length));
+      return colors[random];
+    })
+  );
+
+  const checkRow = (rowIndex) => {
+    tmpRows[rowIndex].pegs.forEach((peg, index) => {
+      if (secretCode.includes(peg)) {
+        if (secretCode.indexOf(peg) === index) {
+          tmpRows[rowIndex].hints[index] = "correct color position";
+        } else {
+          tmpRows[rowIndex].hints[index] = "correct color";
+        }
+      }
+    });
+  };
+
   return (
     <section className="game-container">
       <Header />
       {rows.map((row, i) => {
         return <Row key={i} rowIndex={i} changeColor={changeColor} {...row} />;
       })}
-      <SecretCode />
+      <SecretCode code={secretCode} />
     </section>
   );
 }

@@ -1,0 +1,19 @@
+.check-button {
+  width: 70px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid $color-text;
+  background-color: rgb(212, 216, 5);
+  font-family: $font-open;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: rgb(69, 177, 69);
+  }
+}

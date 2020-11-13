@@ -43,3 +43,23 @@
 .secret-code {
   margin-top: 40px;
 }
+
+.row-secret {
+  position: relative;
+}
+
+.code-hide {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: $color-text;
+  color: white;
+  font-family: $font-open;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none; //niech to docelowo robi logika
+}

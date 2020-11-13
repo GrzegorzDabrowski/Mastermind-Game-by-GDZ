@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Peg from "./Peg";
 import Hint from "./Hint";
+import CheckButton from "./CheckButton";
 
 const Row = ({
   pegs,
@@ -10,6 +11,12 @@ const Row = ({
   changeColor,
   isCurrent,
 }) => {
+  const [isFilled, setIsFilled] = useState(false);
+
+  if (pegs.every((peg) => peg !== false) && isFilled === false) {
+    setIsFilled(true);
+  }
+
   return (
     <div className="row">
       <div className="row-pegs">
@@ -26,6 +33,7 @@ const Row = ({
           );
         })}
       </div>
+      {isFilled && <CheckButton />}
       <div className="row-hints">
         {hints.map((hint, i) => {
           return (

@@ -1,15 +1,18 @@
 import React from "react";
 import "../sass/main.scss";
 
-const SecretCode = () => {
+const SecretCode = ({ code }) => {
+  console.log(code);
   return (
     <div className="row secret-code">
-      <div className="row-pegs">
-        <span className="peg"></span>
-        <span className="peg"></span>
-        <span className="peg"></span>
-        <span className="peg"></span>
+      <div className="row-pegs row-secret">
+        {code.map((item) => {
+          return (
+            <span className="peg" style={{ backgroundColor: item }}></span>
+          );
+        })}
       </div>
+      <div className="code-hide">secret code</div>
     </div>
   );
 };
