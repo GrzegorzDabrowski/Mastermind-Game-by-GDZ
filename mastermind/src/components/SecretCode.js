@@ -2,7 +2,7 @@ import React from "react";
 import "../sass/main.scss";
 
 const SecretCode = ({ code }) => {
-  console.log(code);
+  // console.log(code);
   return (
     <div className="row secret-code">
       <div className="row-pegs row-secret">

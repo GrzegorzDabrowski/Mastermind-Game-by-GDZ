@@ -7,6 +7,7 @@ const Row = ({
   pegs,
   hints,
   isCompleted,
+  checkRow,
   rowIndex,
   changeColor,
   isCurrent,
@@ -25,6 +26,7 @@ const Row = ({
             <Peg
               key={i}
               pegIndex={i}
+              pegs={pegs}
               rowIndex={rowIndex}
               color={peg}
               changeColor={changeColor}
@@ -33,7 +35,7 @@ const Row = ({
           );
         })}
       </div>
-      {isFilled && <CheckButton />}
+      {isFilled && <CheckButton rowIndex={rowIndex} checkRow={checkRow} />}
       <div className="row-hints">
         {hints.map((hint, i) => {
           return (
@@ -42,6 +44,7 @@ const Row = ({
               hintIndex={i}
               rowIndex={rowIndex}
               isCurrent={isCurrent}
+              hints={hints}
             />
           );
         })}

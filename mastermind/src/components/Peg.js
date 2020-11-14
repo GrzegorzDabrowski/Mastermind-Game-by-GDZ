@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ColorChooser from "./ColorChooser";
 
-const Peg = ({ color, pegIndex, rowIndex, changeColor, isCurrent }) => {
+const Peg = ({ color, pegs, pegIndex, rowIndex, changeColor, isCurrent }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleChangeColor = (color) => {
@@ -19,7 +19,7 @@ const Peg = ({ color, pegIndex, rowIndex, changeColor, isCurrent }) => {
         }}
       ></span>
       {isClicked && isCurrent && (
-        <ColorChooser changeColor={handleChangeColor} />
+        <ColorChooser pegs={pegs} changeColor={handleChangeColor} />
       )}
     </div>
   );

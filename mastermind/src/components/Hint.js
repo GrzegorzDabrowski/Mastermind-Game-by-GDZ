@@ -1,6 +1,7 @@
 import React from "react";
 
-const Hint = () => {
+const Hint = (props) => {
+  // console.log(props);
   return <span className="hint"></span>;
 };
 

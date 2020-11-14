@@ -9,7 +9,7 @@ function App() {
   for (let i = 0; i < 10; i++) {
     tmp.push({
       pegs: [false, false, false, false],
-      hints: [false, false, false, false],
+      hints: ["", "", "", ""],
       isCompleted: false,
       isCurrent: i === 0,
     });
@@ -18,44 +18,65 @@ function App() {
   const [rows, setRows] = useState(tmp);
 
   const changeColor = (pegIndex, rowIndex, color) => {
-    const tmpRows = JSON.parse(JSON.stringify(rows));
-    tmpRows[rowIndex].pegs[pegIndex] = color;
-    setRows(tmpRows);
+    const tmp = [...rows];
+    // const tmpRows = JSON.parse(JSON.stringify(rows));
+    tmp[rowIndex].pegs[pegIndex] = color;
+    setRows(tmp);
   };
 
-  const colors = [
-    "#f1a119",
-    "#fc5560",
-    "#9249b7",
-    "#349f34",
-    "#92c3ee",
-    "#f5e76e",
-  ];
+  const codeGenerator = () => {
+    let colors = [
+      "#f1a119",
+      "#fc5560",
+      "#9249b7",
+      "#349f34",
+      "#92c3ee",
+      "#f5e76e",
+    ];
 
-  const [secretCode, setSecretCode] = useState(
-    [...new Array(4)].map((color) => {
-      const random = Math.floor(Math.random() * Math.floor(colors.length));
-      return colors[random];
-    })
-  );
+    return [...new Array(4)].map((color) => {
+      const random = Math.floor(Math.random() * colors.length);
+
+      const selectedColor = colors[random];
+
+      // wyjebujemy
+      colors = colors.filter((color) => color !== selectedColor);
+
+      return selectedColor;
+    });
+  };
+
+  const [secretCode, setSecretCode] = useState(codeGenerator());
 
   const checkRow = (rowIndex) => {
+    const tmpRows = [...rows];
     tmpRows[rowIndex].pegs.forEach((peg, index) => {
       if (secretCode.includes(peg)) {
+        //
         if (secretCode.indexOf(peg) === index) {
-          tmpRows[rowIndex].hints[index] = "correct color position";
+          tmpRows[rowIndex].hints[index] = "correctPosition";
         } else {
-          tmpRows[rowIndex].hints[index] = "correct color";
+          tmpRows[rowIndex].hints[index] = "correctColor";
         }
       }
     });
+
+    setRows(tmpRows);
   };
 
   return (
     <section className="game-container">
       <Header />
       {rows.map((row, i) => {
-        return <Row key={i} rowIndex={i} changeColor={changeColor} {...row} />;
+        return (
+          <Row
+            key={i}
+            rowIndex={i}
+            checkRow={checkRow}
+            changeColor={changeColor}
+            {...row}
+          />
+        );
       })}
       <SecretCode code={secretCode} />
     </section>

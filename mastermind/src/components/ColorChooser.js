@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ColorChooser = ({ changeColor }) => {
+const ColorChooser = ({ changeColor, pegs }) => {
   const colorPalette = [
     "#f1a119",
     "#fc5560",
@@ -10,9 +10,13 @@ const ColorChooser = ({ changeColor }) => {
     "#f5e76e",
   ];
 
+  const modifyColorPalette = (pegs) => {
+    return colorPalette.filter((color) => !pegs.includes(color));
+  };
+
   return (
     <div className="color-chooser">
-      {colorPalette.map((color) => (
+      {modifyColorPalette(pegs).map((color) => (
         <div
           className="color-to-choose"
           onClick={() => changeColor(color)}
