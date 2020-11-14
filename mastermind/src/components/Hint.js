@@ -1,8 +1,8 @@
 import React from "react";
 
 const Hint = (props) => {
-  // console.log(props);
-  return <span className="hint"></span>;
+  console.log(props.hint);
+  return <span className={`hint ${props.hint}`}></span>;
 };
 
 export default Hint;

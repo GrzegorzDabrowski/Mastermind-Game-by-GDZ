@@ -49,7 +49,9 @@ function App() {
   const [secretCode, setSecretCode] = useState(codeGenerator());
 
   const checkRow = (rowIndex) => {
-    const tmpRows = [...rows];
+    const tmpRows = JSON.parse(JSON.stringify(rows));
+
+    console.log(tmpRows);
     tmpRows[rowIndex].pegs.forEach((peg, index) => {
       if (secretCode.includes(peg)) {
         //

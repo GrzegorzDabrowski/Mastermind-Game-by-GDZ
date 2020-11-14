@@ -17,7 +17,7 @@ const Row = ({
   if (pegs.every((peg) => peg !== false) && isFilled === false) {
     setIsFilled(true);
   }
-
+  console.log(hints);
   return (
     <div className="row">
       <div className="row-pegs">
@@ -44,7 +44,7 @@ const Row = ({
               hintIndex={i}
               rowIndex={rowIndex}
               isCurrent={isCurrent}
-              hints={hints}
+              hint={hint}
             />
           );
         })}
