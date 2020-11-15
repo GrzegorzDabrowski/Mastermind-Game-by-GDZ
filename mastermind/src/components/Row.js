@@ -17,7 +17,6 @@ const Row = ({
   if (pegs.every((peg) => peg !== false) && isFilled === false) {
     setIsFilled(true);
   }
-  console.log(hints);
   return (
     <div className="row">
       <div className="row-pegs">
@@ -35,7 +34,13 @@ const Row = ({
           );
         })}
       </div>
-      {isFilled && <CheckButton rowIndex={rowIndex} checkRow={checkRow} />}
+      {isFilled && (
+        <CheckButton
+          rowIndex={rowIndex}
+          checkRow={checkRow}
+          isCompleted={isCompleted}
+        />
+      )}
       <div className="row-hints">
         {hints.map((hint, i) => {
           return (

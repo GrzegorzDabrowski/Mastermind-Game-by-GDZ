@@ -39,7 +39,6 @@ function App() {
 
       const selectedColor = colors[random];
 
-      // wyjebujemy
       colors = colors.filter((color) => color !== selectedColor);
 
       return selectedColor;
@@ -51,7 +50,6 @@ function App() {
   const checkRow = (rowIndex) => {
     const tmpRows = JSON.parse(JSON.stringify(rows));
 
-    console.log(tmpRows);
     tmpRows[rowIndex].pegs.forEach((peg, index) => {
       if (secretCode.includes(peg)) {
         //
@@ -63,7 +61,17 @@ function App() {
       }
     });
 
+    tmpRows[rowIndex].isCompleted = true;
+    tmpRows[rowIndex].isCurrent = false;
+
+    if (rowIndex < 9) {
+      tmpRows[rowIndex + 1].isCurrent = true;
+    } else if (rowIndex === 9) {
+      alert("Game Over!");
+    }
+
     setRows(tmpRows);
+    console.log(tmpRows);
   };
 
   return (
