@@ -68,10 +68,16 @@ function App() {
       tmpRows[rowIndex + 1].isCurrent = true;
     } else if (rowIndex === 9) {
       alert("Game Over!");
+      // <div className="code-hide" style={{ display: "none" }}></div>;
+    }
+
+    if (tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")) {
+      alert("Congratulations! You broke the code!");
+      tmpRows[rowIndex].isCompleted = true;
+      tmpRows[rowIndex + 1].isCurrent = false;
     }
 
     setRows(tmpRows);
-    console.log(tmpRows);
   };
 
   return (
