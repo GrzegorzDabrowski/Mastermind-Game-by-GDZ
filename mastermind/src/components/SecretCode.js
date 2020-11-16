@@ -1,7 +1,7 @@
 import React from "react";
 import "../sass/main.scss";
 
-const SecretCode = ({ code }) => {
+const SecretCode = ({ code, isGameFinished }) => {
   return (
     <div className="row secret-code">
       <div className="row-pegs row-secret">
@@ -11,7 +11,7 @@ const SecretCode = ({ code }) => {
           );
         })}
       </div>
-      <div className="code-hide">secret code</div>
+      {isGameFinished === false && <div className="code-hide">secret code</div>}
     </div>
   );
 };

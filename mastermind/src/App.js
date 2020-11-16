@@ -3,11 +3,13 @@ import "./sass/main.scss";
 import Header from "./components/Header";
 import Row from "./components/Row";
 import SecretCode from "./components/SecretCode";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const tmp = [];
   for (let i = 0; i < 10; i++) {
     tmp.push({
+      id: uuidv4(),
       pegs: [false, false, false, false],
       hints: ["", "", "", ""],
       isCompleted: false,
@@ -16,6 +18,7 @@ function App() {
   }
 
   const [rows, setRows] = useState(tmp);
+  const [isGameFinished, setIsGameFinished] = useState(false);
 
   const changeColor = (pegIndex, rowIndex, color) => {
     const tmp = [...rows];
@@ -66,27 +69,52 @@ function App() {
 
     if (rowIndex < 9) {
       tmpRows[rowIndex + 1].isCurrent = true;
-    } else if (rowIndex === 9) {
+    } else if (
+      rowIndex === 9 &&
+      tmpRows[rowIndex].hints.every((hint) => hint !== "correctPosition")
+    ) {
       alert("Game Over!");
-      // <div className="code-hide" style={{ display: "none" }}></div>;
+      setIsGameFinished("lose");
     }
 
-    if (tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")) {
+    if (
+      rowIndex < 9 &&
+      tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")
+    ) {
       alert("Congratulations! You broke the code!");
       tmpRows[rowIndex].isCompleted = true;
       tmpRows[rowIndex + 1].isCurrent = false;
+      setIsGameFinished("win");
+    } else if (
+      rowIndex === 9 &&
+      tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")
+    ) {
+      alert("Congratulations! You broke the code!");
+      tmpRows[rowIndex].isCompleted = true;
     }
 
     setRows(tmpRows);
+
+    function shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    }
+
+    shuffle(tmpRows[rowIndex].hints);
+  };
+
+  const clearState = () => {
+    setRows(tmp);
+    setSecretCode(codeGenerator());
+    setIsGameFinished(false);
   };
 
   return (
     <section className="game-container">
-      <Header />
+      <Header clearState={clearState} />
       {rows.map((row, i) => {
         return (
           <Row
-            key={i}
+            key={row.id}
             rowIndex={i}
             checkRow={checkRow}
             changeColor={changeColor}
@@ -94,7 +122,7 @@ function App() {
           />
         );
       })}
-      <SecretCode code={secretCode} />
+      <SecretCode isGameFinished={isGameFinished} code={secretCode} />
     </section>
   );
 }
