@@ -16,6 +16,7 @@ const Peg = ({ color, pegs, pegIndex, rowIndex, changeColor, isCurrent }) => {
         onClick={() => setIsClicked((prevState) => !prevState)}
         style={{
           backgroundColor: color ? color : undefined,
+          cursor: isCurrent ? "pointer" : null,
         }}
       ></span>
       {isClicked && isCurrent && (
