@@ -91,6 +91,7 @@ function App() {
     ) {
       alert("Congratulations! You broke the code!");
       tmpRows[rowIndex].isCompleted = true;
+      setIsGameFinished("win");
     }
 
     setRows(tmpRows);
