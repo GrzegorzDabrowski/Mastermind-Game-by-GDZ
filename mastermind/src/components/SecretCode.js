@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import "../sass/main.scss";
 
 const SecretCode = ({ code, isGameFinished }) => {
@@ -7,7 +8,11 @@ const SecretCode = ({ code, isGameFinished }) => {
       <div className="row-pegs row-secret">
         {code.map((item) => {
           return (
-            <span className="peg" style={{ backgroundColor: item }}></span>
+            <span
+              key={uuidv4()}
+              className="peg"
+              style={{ backgroundColor: item }}
+            ></span>
           );
         })}
       </div>

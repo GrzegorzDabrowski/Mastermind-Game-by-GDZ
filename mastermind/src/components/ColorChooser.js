@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const ColorChooser = ({ changeColor, pegs }) => {
   const colorPalette = [
@@ -18,6 +19,7 @@ const ColorChooser = ({ changeColor, pegs }) => {
     <div className="color-chooser">
       {modifyColorPalette(pegs).map((color) => (
         <div
+          key={uuidv4()}
           className="color-to-choose"
           onClick={() => changeColor(color)}
           style={{ backgroundColor: color }}

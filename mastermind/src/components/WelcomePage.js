@@ -3,11 +3,10 @@ import React from "react";
 const WelcomePage = () => {
   return (
     <div className="welcome">
+      <div className="welcome-page-overlay"></div>
       <div className="welcome-page">
         <h2 className="welcome-page-title">Welcome to Mastermind</h2>
-        <p className="welcome-page-text">
-          Sign your name in and break the secret code!
-        </p>
+        <p className="welcome-page-text">Sign in and break the secret code!</p>
         <div>
           <input
             className="welcome-page-input"
