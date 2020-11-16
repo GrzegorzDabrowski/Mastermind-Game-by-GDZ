@@ -3,16 +3,18 @@
     width: 100px;
     height: 70px;
     position: absolute;
+    display: flex;
+    flex-wrap: wrap;
     padding: 5px;
     background-color: $color-background;
-    z-index: 0;
+    z-index: 2;
     border: 1px solid $color-text;
     border-radius: 10px;
   }
 
   &-to-choose {
     margin: 4px;
-    display: inline-block;
+    // display: inline-block;
     border-radius: 50%;
     width: 20px;
     height: 20px;

@@ -1,0 +1,54 @@
+.welcome {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: absolute;
+
+  &-page {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $color-text;
+    border-radius: 5px;
+    color: $color-text;
+    background-color: $color-background;
+    z-index: 2;
+    opacity: 10;
+
+    &-title {
+      font-family: $font-fredoka;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    &-text {
+      font-family: $font-open;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    &-input {
+      background-color: $color-background;
+      border: none;
+      border-bottom: 2px solid $color-text;
+      margin-bottom: 10px;
+    }
+
+    &-btn {
+      background-color: $color-text;
+      border: none;
+      padding-bottom: 2.3px;
+      font-family: $font-open;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}

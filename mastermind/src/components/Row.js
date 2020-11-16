@@ -19,12 +19,7 @@ const Row = ({
   }
   return (
     <div className="row">
-      <div
-        className="row-pegs"
-        style={{
-          borderBottom: isCurrent ? "2px solid rgb(105, 92, 92)" : null,
-        }}
-      >
+      <div className="row-pegs">
         {pegs.map((peg, i) => {
           return (
             <Peg

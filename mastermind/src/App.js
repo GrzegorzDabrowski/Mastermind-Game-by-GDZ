@@ -3,6 +3,7 @@ import "./sass/main.scss";
 import Header from "./components/Header";
 import Row from "./components/Row";
 import SecretCode from "./components/SecretCode";
+import WelcomePage from "./components/WelcomePage";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
 
   return (
     <section className="game-container">
+      <WelcomePage />
       <Header clearState={clearState} />
       {rows.map((row, i) => {
         return (
