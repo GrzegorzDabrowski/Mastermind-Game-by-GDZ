@@ -17,15 +17,13 @@
     }
   }
   &-info {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: $font-open;
     color: $color-text;
+    font-weight: 600;
     display: flex;
-    justify-content: space-between;
 
-    .restart {
+    &-text {
       transition: 0.2s;
       &:hover {
         cursor: pointer;
@@ -33,4 +31,14 @@
       }
     }
   }
+}
+
+.options {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.user {
+  margin-bottom: 20px;
 }

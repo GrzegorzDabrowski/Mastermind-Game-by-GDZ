@@ -34,7 +34,7 @@ const Row = ({
           );
         })}
       </div>
-      {isFilled && (
+      {isFilled && !isCompleted && (
         <CheckButton
           rowIndex={rowIndex}
           checkRow={checkRow}

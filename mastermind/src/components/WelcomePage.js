@@ -1,6 +1,12 @@
 import React from "react";
 
-const WelcomePage = () => {
+const WelcomePage = ({ name, setName, setIsSigned }) => {
+  const onSubmitName = () => {
+    localStorage.setItem("savedName", name);
+
+    setIsSigned(true);
+  };
+
   return (
     <div className="welcome">
       <div className="welcome-page-overlay"></div>
@@ -9,6 +15,8 @@ const WelcomePage = () => {
         <p className="welcome-page-text">Sign in and break the secret code!</p>
         <div>
           <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="welcome-page-input"
             type="text"
             name="name"
@@ -16,6 +24,7 @@ const WelcomePage = () => {
             placeholder="write down your name"
           />
           <button
+            onClick={onSubmitName}
             className="welcome-page-btn"
             type="submit"
             id="welcome-page-btn"

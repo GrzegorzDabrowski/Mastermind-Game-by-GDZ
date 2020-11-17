@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./sass/main.scss";
 import Header from "./components/Header";
 import Row from "./components/Row";
 import SecretCode from "./components/SecretCode";
-// import WelcomePage from "./components/WelcomePage";
+import WelcomePage from "./components/WelcomePage";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
@@ -19,6 +19,29 @@ function App() {
   }
 
   const [rows, setRows] = useState(tmp);
+
+  const [name, setName] = useState("");
+
+  const [isSigned, setIsSigned] = useState(true);
+
+  // is name saved
+  useEffect(() => {
+    let savedName = localStorage.getItem("savedName");
+
+    if (savedName) {
+      setIsSigned(true);
+      setName(savedName);
+    } else {
+      setIsSigned(false);
+    }
+
+    let savedGame = JSON.parse(localStorage.getItem("saveGame"));
+
+    if (savedGame) {
+      setRows(savedGame);
+    }
+  }, []);
+
   const [isGameFinished, setIsGameFinished] = useState(false);
 
   const changeColor = (pegIndex, rowIndex, color) => {
@@ -107,12 +130,30 @@ function App() {
     setRows(tmp);
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
+    localStorage.removeItem("saveGame");
+  };
+
+  const saveGame = () => {
+    console.log(rows);
+    localStorage.setItem("saveGame", JSON.stringify(rows));
   };
 
   return (
     <section className="game-container">
-      {/* <WelcomePage /> */}
-      <Header clearState={clearState} />
+      {!isSigned && (
+        <WelcomePage
+          name={name}
+          setName={setName}
+          isSigned={isSigned}
+          setIsSigned={setIsSigned}
+        />
+      )}
+      <Header
+        clearState={clearState}
+        name={name}
+        isSigned={isSigned}
+        saveGame={saveGame}
+      />
       {rows.map((row, i) => {
         return (
           <Row
