@@ -43,3 +43,16 @@
   margin-bottom: 20px;
   justify-content: space-between;
 }
+
+.end-game {
+  font-family: $font-fredoka;
+  font-size: 1.3rem;
+  color: green;
+  position: absolute;
+  margin-top: 5px;
+}
+
+.game-over {
+  font-size: 1.5rem;
+  color: rgb(224, 0, 0);
+}

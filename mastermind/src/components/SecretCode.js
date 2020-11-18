@@ -2,7 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../sass/main.scss";
 
-const SecretCode = ({ code, isGameFinished }) => {
+const SecretCode = ({ code, isGameFinished, isGameFailed }) => {
   return (
     <div className="row secret-code">
       <div className="row-pegs row-secret">
@@ -16,7 +16,9 @@ const SecretCode = ({ code, isGameFinished }) => {
           );
         })}
       </div>
-      {isGameFinished === false && <div className="code-hide">secret code</div>}
+      {isGameFinished === false && isGameFailed === false && (
+        <div className="code-hide">secret code</div>
+      )}
     </div>
   );
 };

@@ -50,8 +50,6 @@ function App() {
     }
   }, []);
 
-  const [isGameFinished, setIsGameFinished] = useState(false);
-
   const changeColor = (pegIndex, rowIndex, color) => {
     const tmp = [...rows];
     tmp[rowIndex].pegs[pegIndex] = color;
@@ -80,6 +78,8 @@ function App() {
   };
 
   const [secretCode, setSecretCode] = useState(codeGenerator());
+  const [isGameFinished, setIsGameFinished] = useState(false);
+  const [isGameFailed, setIsGameFailed] = useState(false);
 
   const checkRow = (rowIndex) => {
     const tmpRows = JSON.parse(JSON.stringify(rows));
@@ -103,25 +103,22 @@ function App() {
       rowIndex === 9 &&
       tmpRows[rowIndex].hints.some((hint) => hint !== "correctPosition")
     ) {
-      alert("Game Over!");
-      setIsGameFinished("lose");
+      setIsGameFailed(true);
     }
 
     if (
       rowIndex < 9 &&
       tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")
     ) {
-      alert("Congratulations! You broke the code!");
       tmpRows[rowIndex].isCompleted = true;
       tmpRows[rowIndex + 1].isCurrent = false;
-      setIsGameFinished("win");
+      setIsGameFinished(true);
     } else if (
       rowIndex === 9 &&
       tmpRows[rowIndex].hints.every((hint) => hint === "correctPosition")
     ) {
-      alert("Congratulations! You broke the code!");
       tmpRows[rowIndex].isCompleted = true;
-      setIsGameFinished("win");
+      setIsGameFinished(true);
     }
 
     setRows(tmpRows);
@@ -137,6 +134,7 @@ function App() {
     setRows(tmp);
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
+    setIsGameFailed(false);
     localStorage.removeItem("savedGame");
     localStorage.removeItem("savedSecretCode");
   };
@@ -145,6 +143,7 @@ function App() {
     setRows(tmp);
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
+    setIsGameFailed(false);
     localStorage.clear();
   };
 
@@ -176,7 +175,15 @@ function App() {
           />
         );
       })}
-      <SecretCode isGameFinished={isGameFinished} code={secretCode} />
+      {isGameFinished && (
+        <p className="end-game">Congratulations! You broke the code!</p>
+      )}
+      {isGameFailed && <p className="end-game game-over">Game Over!</p>}
+      <SecretCode
+        isGameFinished={isGameFinished}
+        isGameFailed={isGameFailed}
+        code={secretCode}
+      />
     </section>
   );
 }
