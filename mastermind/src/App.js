@@ -26,7 +26,7 @@ function App() {
 
   const saveGame = () => {
     console.log(rows);
-    localStorage.setItem("saveGame", JSON.stringify(rows));
+    localStorage.setItem("savedGame", JSON.stringify(rows));
     localStorage.setItem("savedSecretCode", JSON.stringify(secretCode));
   };
 
@@ -41,7 +41,7 @@ function App() {
       setIsSigned(false);
     }
 
-    let savedGame = JSON.parse(localStorage.getItem("saveGame"));
+    let savedGame = JSON.parse(localStorage.getItem("savedGame"));
     let savedSecretCode = JSON.parse(localStorage.getItem("savedSecretCode"));
 
     if (savedGame) {
@@ -137,8 +137,15 @@ function App() {
     setRows(tmp);
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
-    localStorage.removeItem("saveGame");
+    localStorage.removeItem("savedGame");
     localStorage.removeItem("savedSecretCode");
+  };
+
+  const signOut = () => {
+    setRows(tmp);
+    setSecretCode(codeGenerator());
+    setIsGameFinished(false);
+    localStorage.clear();
   };
 
   return (
@@ -152,6 +159,7 @@ function App() {
         />
       )}
       <Header
+        signOut={signOut}
         clearState={clearState}
         name={name}
         isSigned={isSigned}

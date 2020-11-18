@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import GameRules from "./GameRules";
 
-const Header = ({ clearState, name, isSigned, saveGame }) => {
+const Header = ({ clearState, signOut, name, isSigned, saveGame }) => {
   const handleSubmit = () => {
     clearState();
+  };
+
+  const handleSignOut = () => {
+    signOut();
   };
 
   const [isClicked, setIsClicked] = useState(false);
@@ -30,6 +34,9 @@ const Header = ({ clearState, name, isSigned, saveGame }) => {
       {isClicked && <GameRules />}
       <div className="game-info user">
         <span className="user-name">user: {isSigned ? name : ""}</span>
+        <span className="game-info-text" onClick={handleSignOut}>
+          sign out
+        </span>
       </div>
     </>
   );
