@@ -24,6 +24,12 @@ function App() {
 
   const [isSigned, setIsSigned] = useState(true);
 
+  const saveGame = () => {
+    console.log(rows);
+    localStorage.setItem("saveGame", JSON.stringify(rows));
+    localStorage.setItem("savedSecretCode", JSON.stringify(secretCode));
+  };
+
   // is name saved
   useEffect(() => {
     let savedName = localStorage.getItem("savedName");
@@ -36,9 +42,11 @@ function App() {
     }
 
     let savedGame = JSON.parse(localStorage.getItem("saveGame"));
+    let savedSecretCode = JSON.parse(localStorage.getItem("savedSecretCode"));
 
     if (savedGame) {
       setRows(savedGame);
+      setSecretCode(savedSecretCode);
     }
   }, []);
 
@@ -46,7 +54,6 @@ function App() {
 
   const changeColor = (pegIndex, rowIndex, color) => {
     const tmp = [...rows];
-    // const tmpRows = JSON.parse(JSON.stringify(rows));
     tmp[rowIndex].pegs[pegIndex] = color;
     setRows(tmp);
   };
@@ -131,11 +138,7 @@ function App() {
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
     localStorage.removeItem("saveGame");
-  };
-
-  const saveGame = () => {
-    console.log(rows);
-    localStorage.setItem("saveGame", JSON.stringify(rows));
+    localStorage.removeItem("savedSecretCode");
   };
 
   return (
