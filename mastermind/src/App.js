@@ -30,7 +30,6 @@ function App() {
     localStorage.setItem("savedSecretCode", JSON.stringify(secretCode));
   };
 
-  // is name saved
   useEffect(() => {
     let savedName = localStorage.getItem("savedName");
 
@@ -141,6 +140,7 @@ function App() {
 
   const signOut = () => {
     setRows(tmp);
+    setName("");
     setSecretCode(codeGenerator());
     setIsGameFinished(false);
     setIsGameFailed(false);

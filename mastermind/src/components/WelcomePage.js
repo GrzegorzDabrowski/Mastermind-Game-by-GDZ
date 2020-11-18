@@ -4,7 +4,12 @@ const WelcomePage = ({ name, setName, setIsSigned }) => {
   const onSubmitName = () => {
     localStorage.setItem("savedName", name);
 
-    setIsSigned(true);
+    if (name.length < 1) {
+      alert("Enter your name :)");
+      setIsSigned(false);
+    } else {
+      setIsSigned(true);
+    }
   };
 
   return (
