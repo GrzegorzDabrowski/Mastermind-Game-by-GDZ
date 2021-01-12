@@ -85,7 +85,6 @@ function App() {
 
     tmpRows[rowIndex].pegs.forEach((peg, index) => {
       if (secretCode.includes(peg)) {
-        //
         if (secretCode.indexOf(peg) === index) {
           tmpRows[rowIndex].hints[index] = "correctPosition";
         } else {
@@ -145,6 +144,7 @@ function App() {
     setIsGameFinished(false);
     setIsGameFailed(false);
     localStorage.clear();
+    setIsSigned(false);
   };
 
   return (
